@@ -1,0 +1,6 @@
+﻿  main.cpp
+C:\Users\Administrator\source\repos\tropicall\tropicall\main.cpp(86,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Administrator\source\repos\tropicall\tropicall\main.cpp(86,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Administrator\source\repos\tropicall\tropicall\main.cpp(90,96): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Administrator\source\repos\tropicall\tropicall\main.cpp(90,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  tropicall.vcxproj -> C:\Users\Administrator\source\repos\tropicall\x64\Debug\tropicall.exe
