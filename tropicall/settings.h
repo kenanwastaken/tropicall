@@ -33,4 +33,26 @@ extern int toolBoxW = 80;
 extern int toolBoxH = 600;
 bool toolBox_isHovered;
 
+//COLOR 1
+extern int color1X = 30;
+extern int color1Y = (SETTINGS_H::mainWindowH / 2) - 260;
+extern int color1W = 25;
+extern int color1H = 25;
+bool color1_isHovered;
+
+//COLOR 2
+extern int color2X = 65;
+extern int color2Y = (SETTINGS_H::mainWindowH / 2) - 260;
+extern int color2W = 25;
+extern int color2H = 25;
+bool color2_isHovered;
+
+//COLOR 3
+extern int color3X = 65;
+extern int color3Y = (SETTINGS_H::mainWindowH / 2) - 220;
+extern int color3W = 25;
+extern int color3H = 25;
+bool color3_isHovered;
+
+
 #endif
