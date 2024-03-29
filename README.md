@@ -8,7 +8,7 @@ Tropicall is an application that simulates drawing with a pencil on a blackboard
 
 Tropicall is currently in development. No official release has been made yet.
 
-## Screen Shots
+## ScreenShots
 
 ![resim](https://github.com/kenanwastaken/tropicall/assets/61794478/42c2d4af-19cb-4bda-8b28-2412be769816)
 
