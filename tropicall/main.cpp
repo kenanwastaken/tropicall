@@ -1,9 +1,19 @@
 #include <SDL.h>
+#include <SDL_syswm.h>
 #include <stdio.h>
 #include <iostream>
 #include <string>
 #include <windows.h>
 #include "settings.h"
+
+struct RGBA
+{
+    int r;
+    int g;
+    int b;
+    int a;
+};
+
 
 bool isMouseHover(int mouseX, int mouseY, int rectX, int rectY, int rectW, int rectH) {
     SDL_Rect rect;
@@ -14,55 +24,6 @@ bool isMouseHover(int mouseX, int mouseY, int rectX, int rectY, int rectW, int r
     return (mouseX >= rect.x && mouseX <= rect.x + rect.w &&
         mouseY >= rect.y && mouseY <= rect.y + rect.h);
 }
-
-class toolBox
-{
-public:
-    //TOOLBOX
-    void static toolBoxMain(SDL_Renderer* renderer)
-    {
-        SDL_Rect toolBoxRect;
-        toolBoxRect.x = SETTINGS_H::toolBoxX;
-        toolBoxRect.y = SETTINGS_H::toolBoxY;
-        toolBoxRect.w = SETTINGS_H::toolBoxW;
-        toolBoxRect.h = SETTINGS_H::toolBoxH;
-        SDL_SetRenderDrawColor(renderer, 74, 74, 74, 255);
-        SDL_RenderFillRect(renderer, &toolBoxRect);
-    };
-    //COLOR 1
-    void static color1(SDL_Renderer* renderer)
-    {
-        SDL_Rect color1;
-        color1.x = SETTINGS_H::color1X;
-        color1.y = SETTINGS_H::color1Y;
-        color1.w = SETTINGS_H::color1W;
-        color1.h = SETTINGS_H::color1H;
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        SDL_RenderFillRect(renderer, &color1);
-    };
-    void static color2(SDL_Renderer* renderer)
-    {
-        SDL_Rect color2;
-        color2.x = SETTINGS_H::color2X;
-        color2.y = SETTINGS_H::color2Y;
-        color2.w = SETTINGS_H::color2W;
-        color2.h = SETTINGS_H::color2H;
-        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-        SDL_RenderFillRect(renderer, &color2);
-    };
-    void static color3(SDL_Renderer* renderer)
-    {
-        SDL_Rect color3;
-        color3.x = SETTINGS_H::color3X;
-        color3.y = SETTINGS_H::color3Y;
-        color3.w = SETTINGS_H::color3W;
-        color3.h = SETTINGS_H::color3H;
-        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-        SDL_RenderFillRect(renderer, &color3);
-        SDL_RenderPresent(renderer);
-    };
-};
-
 void toolBoxFunc(std::string MODE, SDL_Event event)
 {
     if (MODE == "MBD")
@@ -176,7 +137,82 @@ void MouseButtonDown(SDL_Renderer* renderer, SDL_Event event)
     }
 }
 
+class border
+{
+public:
+    static void addBorder(SDL_Renderer* renderer, SDL_Rect rect, int radius, RGBA rgb)
+    {
+        SDL_Rect border;
+        border.x = rect.x - (radius / 2);
+        border.y = rect.y - (radius / 2);
+        border.w = rect.w + radius;
+        border.h = rect.h + radius;
+        SDL_SetRenderDrawColor(renderer, rgb.r, rgb.g, rgb.b, rgb.a);
+        SDL_RenderFillRect(renderer, &border);
+    }
+};
+class toolBox
+{
+public:
+    //TOOLBOX
+    static void toolBoxMain(SDL_Renderer* renderer)
+    {
+        SDL_Rect toolBoxRect;
+        toolBoxRect.x = SETTINGS_H::toolBoxX;
+        toolBoxRect.y = SETTINGS_H::toolBoxY;
+        toolBoxRect.w = SETTINGS_H::toolBoxW;
+        toolBoxRect.h = SETTINGS_H::toolBoxH;
+        if (SETTINGS_H::toolBox_isHovered)
+        {
+            border::addBorder(renderer, toolBoxRect, 10, RGBA(255, 0, 0, 255));
+        }
+        else {
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            border::addBorder(renderer, toolBoxRect, 10, RGBA(0, 0, 0, 255));
+        }
+        SDL_SetRenderDrawColor(renderer, 74, 74, 74, 255); // Set alpha to 255 for full visibility
+        SDL_RenderFillRect(renderer, &toolBoxRect);
+    }
+
+    static void color1(SDL_Renderer* renderer)
+    {
+        SDL_Rect color1;
+        color1.x = SETTINGS_H::color1X;
+        color1.y = SETTINGS_H::color1Y;
+        color1.w = SETTINGS_H::color1W;
+        color1.h = SETTINGS_H::color1H;
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Set alpha to 255 for full visibility
+        SDL_RenderFillRect(renderer, &color1);
+    }
+
+    static void color2(SDL_Renderer* renderer)
+    {
+        SDL_Rect color2;
+        color2.x = SETTINGS_H::color2X;
+        color2.y = SETTINGS_H::color2Y;
+        color2.w = SETTINGS_H::color2W;
+        color2.h = SETTINGS_H::color2H;
+        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Set alpha to 255 for full visibility
+        SDL_RenderFillRect(renderer, &color2);
+    }
+
+    static void color3(SDL_Renderer* renderer)
+    {
+        SDL_Rect color3;
+        color3.x = SETTINGS_H::color3X;
+        color3.y = SETTINGS_H::color3Y;
+        color3.w = SETTINGS_H::color3W;
+        color3.h = SETTINGS_H::color3H;
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Set alpha to 255 for full visibility
+        SDL_RenderFillRect(renderer, &color3);
+        SDL_RenderPresent(renderer); // Only call this if you want color3 to be immediately visible
+    }
+
+};
+
+
 int SDL_main(int argc, char* argv[]) {
+    LOG("SCREEN SIZED TO -> (" + std::to_string(SETTINGS_H::mainWindowW) + "," + std::to_string(SETTINGS_H::mainWindowH) + ")");
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         fprintf(stderr, "SDL_Init Error: %s\n", SDL_GetError());
         return 1;
@@ -201,15 +237,6 @@ int SDL_main(int argc, char* argv[]) {
     }
     LOG("WINDOW CREATED.");
 
-    //FLAGS
-    if (!SETTINGS_H::FullScreen)
-    {
-        SDL_SetWindowFullscreen(window, SETTINGS_H::FullScreenMode);
-        LOG("FULLSCREEN MODE.");
-    }
-    //SDL_SetWindowAlwaysOnTop(window, SDL_TRUE);
-
-
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (renderer == NULL) {
         fprintf(stderr, "SDL_CreateRenderer Error: %s\n", SDL_GetError());
@@ -221,12 +248,13 @@ int SDL_main(int argc, char* argv[]) {
     ClearScreen(renderer);
 
     SDL_Event event;
+    bool running = true;
 
     while (running) {
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
             case SDL_QUIT:
-                running = 0;
+                running = false;
                 break;
             case SDL_MOUSEBUTTONDOWN:
                 MouseButtonDown(renderer, event);
@@ -253,10 +281,11 @@ int SDL_main(int argc, char* argv[]) {
         toolBox::color3(renderer);
     };
 
+    SDL_Delay(16);
+
     // Cleanup
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
 }
-

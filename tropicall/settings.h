@@ -1,13 +1,14 @@
 // data.h
 #ifndef SETTINGS_H
 #define SETTINGS_H
+#include <windows.h>
 
 //MAIN
 extern int running = 1;
 
 //WINDOW
-extern int mainWindowW = 2560;
-extern int mainWindowH = 1440;
+extern int mainWindowW = GetSystemMetrics(SM_CXSCREEN);
+extern int mainWindowH = GetSystemMetrics(SM_CYSCREEN);
 extern const char* mainWindowTitle = "tropicall";
 extern bool FullScreen = false;
 extern SDL_WindowFlags FullScreenMode = SDL_WINDOW_FULLSCREEN_DESKTOP;
