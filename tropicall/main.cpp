@@ -6,15 +6,6 @@
 #include <windows.h>
 #include "settings.h"
 
-struct RGBA
-{
-    int r;
-    int g;
-    int b;
-    int a;
-};
-
-
 bool isMouseHover(int mouseX, int mouseY, int rectX, int rectY, int rectW, int rectH) {
     SDL_Rect rect;
     rect.x = rectX;
@@ -140,14 +131,20 @@ void MouseButtonDown(SDL_Renderer* renderer, SDL_Event event)
 class border
 {
 public:
-    static void addBorder(SDL_Renderer* renderer, SDL_Rect rect, int radius, RGBA rgb)
+    static void addDrawColorBorder(SDL_Renderer* renderer, SDL_Rect rect, int radius, bool clear)
     {
         SDL_Rect border;
         border.x = rect.x - (radius / 2);
         border.y = rect.y - (radius / 2);
         border.w = rect.w + radius;
         border.h = rect.h + radius;
-        SDL_SetRenderDrawColor(renderer, rgb.r, rgb.g, rgb.b, rgb.a);
+        if (clear)
+        {
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            SDL_RenderFillRect(renderer, &border);
+            return;
+        }
+        SDL_SetRenderDrawColor(renderer, SETTINGS_H::drawR, SETTINGS_H::drawG, SETTINGS_H::drawB, SETTINGS_H::drawA);
         SDL_RenderFillRect(renderer, &border);
     }
 };
@@ -164,16 +161,15 @@ public:
         toolBoxRect.h = SETTINGS_H::toolBoxH;
         if (SETTINGS_H::toolBox_isHovered)
         {
-            border::addBorder(renderer, toolBoxRect, 10, RGBA(255, 0, 0, 255));
+            border::addDrawColorBorder(renderer, toolBoxRect, 10, false);
         }
         else {
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-            border::addBorder(renderer, toolBoxRect, 10, RGBA(0, 0, 0, 255));
+            border::addDrawColorBorder(renderer, toolBoxRect, 10, true);
         }
-        SDL_SetRenderDrawColor(renderer, 74, 74, 74, 255); // Set alpha to 255 for full visibility
+        SDL_SetRenderDrawColor(renderer, 74, 74, 74, 255);
         SDL_RenderFillRect(renderer, &toolBoxRect);
     }
-
     static void color1(SDL_Renderer* renderer)
     {
         SDL_Rect color1;

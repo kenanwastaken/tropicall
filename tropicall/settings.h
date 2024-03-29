@@ -3,6 +3,15 @@
 #define SETTINGS_H
 #include <windows.h>
 
+struct RGBA
+{
+    int r;
+    int g;
+    int b;
+    int a;
+};
+
+
 //MAIN
 extern int running = 1;
 
@@ -33,6 +42,7 @@ extern int toolBoxY = (SETTINGS_H::mainWindowH / 2) - 300;
 extern int toolBoxW = 80;
 extern int toolBoxH = 600;
 bool toolBox_isHovered;
+RGBA toolBoxBorderRGBA(SETTINGS_H::drawR, SETTINGS_H::drawG, SETTINGS_H::drawB, SETTINGS_H::drawA);
 
 //COLOR 1
 extern int color1X = 30;
