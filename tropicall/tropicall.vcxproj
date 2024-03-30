@@ -139,10 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="border.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mouseEvent.cpp" />
+    <ClCompile Include="toolbox.cpp" />
+    <ClCompile Include="toolboxColors.cpp" />
+    <ClCompile Include="triggers.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="border.h" />
+    <ClInclude Include="mouseEvent.h" />
     <ClInclude Include="settings.h" />
+    <ClInclude Include="toolbox.h" />
+    <ClInclude Include="toolboxColors.h" />
+    <ClInclude Include="triggers.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
