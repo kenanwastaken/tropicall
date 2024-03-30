@@ -147,6 +147,17 @@ public:
         SDL_SetRenderDrawColor(renderer, SETTINGS_H::drawR, SETTINGS_H::drawG, SETTINGS_H::drawB, SETTINGS_H::drawA);
         SDL_RenderFillRect(renderer, &border);
     }
+    static void addBorder(SDL_Renderer* renderer, SDL_Rect rect, int radius, RGBA rgb)
+    {
+        SDL_Rect border;
+        border.x = rect.x - (radius / 2);
+        border.y = rect.y - (radius / 2);
+        border.w = rect.w + radius;
+        border.h = rect.h + radius;
+        SDL_SetRenderDrawColor(renderer, rgb.r, rgb.g, rgb.b, rgb.a);
+        SDL_RenderFillRect(renderer, &border);
+    }
+
 };
 class toolBox
 {
