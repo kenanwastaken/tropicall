@@ -8,5 +8,6 @@ namespace toolboxColors
 	void color1(SDL_Renderer* renderer);
 	void color2(SDL_Renderer* renderer);
 	void color3(SDL_Renderer* renderer);
+	void color4(SDL_Renderer* renderer);
 };
 #endif

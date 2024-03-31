@@ -1,7 +1,7 @@
 #include <SDL.h>
 #include "drawingMethods.h"
 
-void  DRAWMETHOD::drawDashLine(SDL_Renderer* renderer, int x1, int y1, int x2, int y2, int dashLength, int gapLength)
+void DRAWMETHOD::drawDashLine(SDL_Renderer* renderer, int x1, int y1, int x2, int y2, int dashLength, int gapLength)
 {
     float dx = x2 - x1;
     float dy = y2 - y1;

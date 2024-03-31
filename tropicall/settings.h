@@ -65,5 +65,12 @@ inline int color3W = 25;
 inline int color3H = 25;
 inline bool color3_isHovered;
 
+//COLOR 4
+inline int color4X = 30;
+inline int color4Y = (SETTINGS_H::mainWindowH / 2) - 220;
+inline int color4W = 25;
+inline int color4H = 25;
+inline bool color4_isHovered;
+
 
 #endif

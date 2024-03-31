@@ -140,14 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="border.cpp" />
+    <ClCompile Include="DIRECTX_IMPLEMENT.cpp" />
     <ClCompile Include="drawingMethods.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="imgui\imgui_impl_dx9.cpp" />
-    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="imgui\imgui_tables.cpp" />
-    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mouseEvent.cpp" />
     <ClCompile Include="toolbox.cpp" />
@@ -157,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="border.h" />
+    <ClInclude Include="DIRECTX_IMPLEMENT.h" />
     <ClInclude Include="drawingMethods.h" />
     <ClInclude Include="dx\d2d1.h" />
     <ClInclude Include="dx\d2d1effectauthor.h" />

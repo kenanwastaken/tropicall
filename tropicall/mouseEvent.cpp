@@ -30,7 +30,6 @@ void MOUSE_EVENTSs::mouseMotion(SDL_Renderer* renderer, SDL_Event event)
     }
     toolBoXx::toolBoxFunc("MM", event);
 }
-
 void MOUSE_EVENTSs::MouseButtonDown(SDL_Renderer* renderer, SDL_Event event)
 {
     if (event.button.button == SDL_BUTTON_LEFT) {

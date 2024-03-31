@@ -30,5 +30,15 @@ void toolboxColors::color3(SDL_Renderer* renderer)
     color3.h = SETTINGS_H::color3H;
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Set alpha to 255 for full visibility
     SDL_RenderFillRect(renderer, &color3);
+}
+void toolboxColors::color4(SDL_Renderer* renderer)
+{
+    SDL_Rect color4;
+    color4.x = SETTINGS_H::color4X;
+    color4.y = SETTINGS_H::color4Y;
+    color4.w = SETTINGS_H::color4W;
+    color4.h = SETTINGS_H::color4H;
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set alpha to 255 for full visibility
+    SDL_RenderFillRect(renderer, &color4);
     SDL_RenderPresent(renderer); // Only call this if you want color3 to be immediately visible
 }

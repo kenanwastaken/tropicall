@@ -51,6 +51,14 @@ void toolBoXx::toolBoxFunc(std::string MODE, SDL_Event event)
             SETTINGS_H::drawA = 255;
             return;
         }
+        if (SETTINGS_H::color4_isHovered)
+        {
+            SETTINGS_H::drawR = 255;
+            SETTINGS_H::drawG = 255;
+            SETTINGS_H::drawB = 255;
+            SETTINGS_H::drawA = 255;
+            return;
+        }
     }
     if (MODE == "MM")
     {
@@ -58,5 +66,6 @@ void toolBoXx::toolBoxFunc(std::string MODE, SDL_Event event)
         if (TRIGGERSs::isMouseHover(event.motion.x, event.motion.y, SETTINGS_H::color1X, SETTINGS_H::color1Y, SETTINGS_H::color1W, SETTINGS_H::color1H)) SETTINGS_H::color1_isHovered = true; else SETTINGS_H::color1_isHovered = false;
         if (TRIGGERSs::isMouseHover(event.motion.x, event.motion.y, SETTINGS_H::color2X, SETTINGS_H::color2Y, SETTINGS_H::color2W, SETTINGS_H::color2H)) SETTINGS_H::color2_isHovered = true; else SETTINGS_H::color2_isHovered = false;
         if (TRIGGERSs::isMouseHover(event.motion.x, event.motion.y, SETTINGS_H::color3X, SETTINGS_H::color3Y, SETTINGS_H::color3W, SETTINGS_H::color3H)) SETTINGS_H::color3_isHovered = true; else SETTINGS_H::color3_isHovered = false;
+        if (TRIGGERSs::isMouseHover(event.motion.x, event.motion.y, SETTINGS_H::color4X, SETTINGS_H::color4Y, SETTINGS_H::color4W, SETTINGS_H::color4H)) SETTINGS_H::color4_isHovered = true; else SETTINGS_H::color4_isHovered = false;
     }
 }
